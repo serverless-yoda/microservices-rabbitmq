@@ -9,6 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\RMQ.Banking.Application\RMQ.Banking.Application.csproj" />
+    <ProjectReference Include="..\RMQ.Banking.Data\RMQ.Banking.Data.csproj" />
     <ProjectReference Include="..\RMQ.Domain.Core\RMQ.Domain.Core.csproj" />
     <ProjectReference Include="..\RMQ.Infrastructure.Bus\RMQ.Infrastructure.Bus.csproj" />
   </ItemGroup>
