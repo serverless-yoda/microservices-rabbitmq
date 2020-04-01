@@ -53,7 +53,7 @@ namespace RMQ.Transfer.API
             });
             services.AddMediatR(typeof(Startup));
 
-            //RegisterServices(services);
+            RegisterServices(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

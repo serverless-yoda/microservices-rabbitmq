@@ -13,6 +13,8 @@
     <ProjectReference Include="..\RMQ.Banking.Data\RMQ.Banking.Data.csproj" />
     <ProjectReference Include="..\RMQ.Domain.Core\RMQ.Domain.Core.csproj" />
     <ProjectReference Include="..\RMQ.Infrastructure.Bus\RMQ.Infrastructure.Bus.csproj" />
+    <ProjectReference Include="..\RMQ.Transfer.Application\RMQ.Transfer.Application.csproj" />
+    <ProjectReference Include="..\RMQ.Transfer.Data\RMQ.Transfer.Data.csproj" />
   </ItemGroup>
 
 </Project>

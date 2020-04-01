@@ -9,6 +9,11 @@ using RMQ.Banking.Domain.Commands;
 using RMQ.Banking.Domain.Interfaces;
 using RMQ.Domain.Core.Bus;
 using RMQ.Infrastructure.Bus;
+using RMQ.Transfer.Application.Interfaces;
+using RMQ.Transfer.Application.Services;
+using RMQ.Transfer.Data.Context;
+using RMQ.Transfer.Data.Repository;
+using RMQ.Transfer.Domain.Interfaces;
 
 namespace RMQ.Infrastructure.IoC
 {
@@ -19,11 +24,15 @@ namespace RMQ.Infrastructure.IoC
             services.AddTransient<IEventBus, RabbitMQBus>();
 
             services.AddTransient<IRequestHandler<CreateTransferCommand, bool>, TransferCommandHandler>();
+            
             services.AddTransient<IAccountService, AccountService>();
+            services.AddTransient<ITransferService, TransferService>();
 
             services.AddTransient<IAccountRepository, AccountRepository>();
+            services.AddTransient<ITransferRepository, TransferRepository>();
 
             services.AddDbContext<BankingDbContext>();
+            services.AddDbContext<TransferDbContext>();
         }
     }
 }
