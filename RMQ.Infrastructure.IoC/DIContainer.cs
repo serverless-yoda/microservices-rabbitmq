@@ -23,7 +23,14 @@ namespace RMQ.Infrastructure.IoC
     {
         public static void RegisterServices(IServiceCollection services) {
 
-            services.AddTransient<IEventBus, RabbitMQBus>();
+            //services.AddTransient<IEventBus, RabbitMQBus>();
+            services.AddSingleton<IEventBus, RabbitMQBus>(sp =>
+            {
+                var scopeFactory = sp.GetRequiredService<IServiceScopeFactory>();
+                return new RabbitMQBus(sp.GetService<IMediator>(), scopeFactory);
+            });
+
+            services.AddTransient<TransferEventHandler>();
 
             services.AddTransient<IEventHandler<TransferCreatedEvent>, TransferEventHandler>();
 
