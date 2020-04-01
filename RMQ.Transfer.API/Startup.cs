@@ -1,18 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using RMQ.Domain.Core.Bus;
 using RMQ.Infrastructure.IoC;
 using RMQ.Transfer.Data.Context;
+using RMQ.Transfer.Domain.EventHandlers;
+using RMQ.Transfer.Domain.Events;
 
 namespace RMQ.Transfer.API
 {
@@ -79,8 +76,14 @@ namespace RMQ.Transfer.API
                 endpoints.MapControllers();
             });
 
-           
+            ConfigureQueueSubscription(app);
 
+        }
+
+        private void ConfigureQueueSubscription(IApplicationBuilder app)
+        {
+            var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
+            eventBus.Subscribe<TransferCreatedEvent, TransferEventHandler>();
         }
     }
 }

@@ -13,7 +13,9 @@ using RMQ.Transfer.Application.Interfaces;
 using RMQ.Transfer.Application.Services;
 using RMQ.Transfer.Data.Context;
 using RMQ.Transfer.Data.Repository;
+using RMQ.Transfer.Domain.EventHandlers;
 using RMQ.Transfer.Domain.Interfaces;
+using RMQ.Transfer.Domain.Events;
 
 namespace RMQ.Infrastructure.IoC
 {
@@ -22,6 +24,8 @@ namespace RMQ.Infrastructure.IoC
         public static void RegisterServices(IServiceCollection services) {
 
             services.AddTransient<IEventBus, RabbitMQBus>();
+
+            services.AddTransient<IEventHandler<TransferCreatedEvent>, TransferEventHandler>();
 
             services.AddTransient<IRequestHandler<CreateTransferCommand, bool>, TransferCommandHandler>();
             
