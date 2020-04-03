@@ -47,7 +47,6 @@ namespace RMQ.Infrastructure.Bus
 
                 channel.BasicPublish("", eventname, null, body);
             };
-
         }
 
         public Task SendCommand<T>(T command) where T : Command
@@ -129,7 +128,8 @@ namespace RMQ.Infrastructure.Bus
                 {
                     using (var scope = _scopeFactory.CreateScope())
                     {
-                        var handler = scope.ServiceProvider.GetService(subscription);//Activator.CreateInstance(subscription);
+                        var handler = scope.ServiceProvider.GetService(subscription);
+                        //Activator.CreateInstance(subscription);
                         if (handler == null) continue;
 
 

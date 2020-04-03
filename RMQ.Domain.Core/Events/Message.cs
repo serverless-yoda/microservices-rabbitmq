@@ -1,7 +1,5 @@
 ﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace RMQ.Domain.Core.Events
 {
@@ -12,7 +10,6 @@ namespace RMQ.Domain.Core.Events
         public Message()
         {
             MessageType = GetType().Name;
-
         }
     }
 }
